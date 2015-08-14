@@ -18,28 +18,15 @@ class Uber
 
   end
 
-<<<<<<< HEAD
-  # def authorize
-  #   client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
-  #                               site: 'https://login.uber.com/oauth/authorize')
-  #   client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
-  #   @token = client.auth_code.get_token(client_secret: ENV['UBER_CLIENT_SECRET'],
-  #                                       client_id: ENV['UBER_CLIENT_ID'],
-  #                                       grant_type: 'authorization_code',
-  #                                       redirect_uri: 'http://localhost:8080',
-  #                                       code:'authorization_code')
-  # end
-=======
   def authorize
     # client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
     #                             ENV['UBER_CLIENT_SECRET'],
     #                             site: 'https://login.uber.com/oauth/authorize')
     # client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
-    # @token = client.auth_code.get_token('authorization_code_value', 
-    #                                    :redirect_uri => 'http://localhost:8080/oauth2/callback', 
+    # @token = client.auth_code.get_token('authorization_code_value',
+    #                                    :redirect_uri => 'http://localhost:8080/oauth2/callback',
     #                                    :headers => {'Authorization' => ENV['UBER_SERVER_TOKEN']})
   end
->>>>>>> cf2d46f1419344ef76635ca424aeb3036d6986e4
 
   def availability
     parameters = { query: {
