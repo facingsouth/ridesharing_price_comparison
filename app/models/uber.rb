@@ -6,9 +6,9 @@ class Uber
 
   base_uri 'https://sandbox-api.uber.com'
 
-  def initialize(start_lat = 37.775818, 
-                 start_lon = -122.418028, 
-                 end_lat   = 37.005818, 
+  def initialize(start_lat = 37.775818,
+                 start_lon = -122.418028,
+                 end_lat   = 37.005818,
                  end_lon   = -122.000028)
     @data = nil
     @start_lat = start_lat
@@ -18,15 +18,16 @@ class Uber
 
   end
 
-  def authorize
-    client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
-                                ENV['UBER_CLIENT_SECRET'],
-                                site: 'https://login.uber.com/oauth/authorize')
-    # client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
-    # @token = client.auth_code.get_token('authorization_code_value', 
-    #                                    :redirect_uri => 'http://localhost:8080/oauth2/callback', 
-    #                                    :headers => {'Authorization' => ENV['UBER_SERVER_TOKEN']})
-  end
+  # def authorize
+  #   client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
+  #                               site: 'https://login.uber.com/oauth/authorize')
+  #   client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
+  #   @token = client.auth_code.get_token(client_secret: ENV['UBER_CLIENT_SECRET'],
+  #                                       client_id: ENV['UBER_CLIENT_ID'],
+  #                                       grant_type: 'authorization_code',
+  #                                       redirect_uri: 'http://localhost:8080',
+  #                                       code:'authorization_code')
+  # end
 
   def availability
     parameters = { query: {
