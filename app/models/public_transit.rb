@@ -23,7 +23,7 @@ class PublicTransit
               :duration => duration(response),
               :price    => price(response),
               :mode     => travel_mode,
-              :availablity => 5.0
+              :availability => 5.0
     }
   end
 
@@ -45,7 +45,7 @@ class PublicTransit
   end
 
   def duration(response) # In minutes
-    (response["routes"][0]["legs"][0]["duration"]["value"] / 60.to_f).round(2)
+    (response["routes"][0]["legs"][0]["duration"]["value"] / 60.to_f).round
   end
 
   def price(response) # In USD
