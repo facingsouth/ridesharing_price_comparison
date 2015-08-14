@@ -1,0 +1,12 @@
+Basic User flow:
+1. User Searches
+2. Search results go into Historical db
+3. Sees results
+
+PORO: Uber, Google, Taxi
+
+Models: History
+
+City name (string) | Avg price / mile (float) | time of search & date of seach (datetime) | type_of_rideshare (string) | availability (int)
+
+Controller: dashboard

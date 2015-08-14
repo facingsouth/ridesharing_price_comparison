@@ -1,6 +1,6 @@
 
 class Uber
-
+  include Geocoder
   include HTTParty
 
   base_uri 'https://sandbox-api.uber.com'
@@ -18,7 +18,17 @@ class Uber
   end
 
 
-=======
+  # Returns an array with [lat, long]
+  def address_to_coordinates(user_address)
+    Geocoder.coordinates(user_address)
+  end
+
+  # Returns a string with the address
+  def coordinates_to_address(lat, long)
+    Geocoder.address([lat, long])
+  end
+
+
   def authorize
     # client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
     #                             ENV['UBER_CLIENT_SECRET'],
