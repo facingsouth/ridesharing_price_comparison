@@ -1,6 +1,6 @@
-require 'oauth2'
-
 class PublicTransit
+
+  DRIVING_COST_PER_MILE = 0.35
 
   include HTTParty
 
@@ -9,7 +9,7 @@ class PublicTransit
   def initialize(origin      = "San Francisco", 
                  destination = "San Mateo", 
                  travel_mode = "transit")
-    @data = []
+    @data = {}
     @origin = origin
     @destination = destination
     @travel_mode = travel_mode
@@ -17,9 +17,14 @@ class PublicTransit
 
   def data_parser
     response = get_response
-    return nil unless response
+    return @data = { :status => "service not available" } unless response
     raise response["status"] unless response["status"] == "OK"
-    @data = [distance(response), duration(response), price(response)]
+    @data = { :distance => distance(response),
+              :duration => duration(response),
+              :price    => price(response),
+              :mode     => travel_mode,
+              :availablity => 5.0
+    }
   end
 
   private
@@ -35,17 +40,19 @@ class PublicTransit
     self.class.get('/maps/api/directions/json', parameters)
   end
 
-  def distance(response) # In meters
-    response["routes"][0]["legs"][0]["distance"]["value"]
+  def distance(response) # In miles
+    (response["routes"][0]["legs"][0]["distance"]["value"] / 1609.34).round(2)
   end
 
-  def duration(response) # In seconds
-    response["routes"][0]["legs"][0]["duration"]["value"]
+  def duration(response) # In minutes
+    (response["routes"][0]["legs"][0]["duration"]["value"] / 60.to_f).round(2)
   end
 
-  def price(response)
+  def price(response) # In USD
     if travel_mode == "transit"
-      response["routes"][0]["fare"]["value"]
+      response["routes"][0]["fare"]["text"]
+    elsif travel_mode == "driving"
+      "$#{(distance(response) * DRIVING_COST_PER_MILE).round(2)}"
     end
   end
 
