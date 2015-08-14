@@ -19,9 +19,9 @@ class Uber
   end
 
   def authorize
-    client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
-                                ENV['UBER_CLIENT_SECRET'],
-                                site: 'https://login.uber.com/oauth/authorize')
+    # client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
+    #                             ENV['UBER_CLIENT_SECRET'],
+    #                             site: 'https://login.uber.com/oauth/authorize')
     # client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
     # @token = client.auth_code.get_token('authorization_code_value', 
     #                                    :redirect_uri => 'http://localhost:8080/oauth2/callback', 
