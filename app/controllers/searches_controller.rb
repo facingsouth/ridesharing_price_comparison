@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(search_params)
     if @search.save
-      redirect_to search
+      redirect_to @search
     else
       flash.now[:error] = "Error!"
       render :new
@@ -17,11 +17,8 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @data = @search.get_data
-    # map = GoogleMap.new(params[:origin], params[:destination])
-    # @map = map.get_response
-    @origin = CGI::escape(@search.origin)
-    @destination = CGI::escape(@search.destination)
-    @url = "https://www.google.com/maps/embed/v1/directions?origin=#{@origin},+United+States&destination=S#{@destination},+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
+    map = GoogleMap.new(@search.origin, @search.destination)
+    @map_url = map.build_url
     @search = Search.new
   end
 
