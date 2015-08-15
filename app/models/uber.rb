@@ -20,6 +20,12 @@ class Uber
     result
   end
 
+  def distance(start_address, end_address)
+    start = Geocoder.coordinates(start_address)
+    destination = Geocoder.coordinates(end_address)
+    Geocoder::Calculations.distance_between(start, destination)
+  end
+
   private
 
   def estimate_uber_availability(surge)
@@ -64,9 +70,7 @@ class Uber
     Geocoder.address([lat, long])
   end
 
-
-
-
+end
 
   # ----------
   # OAuth to be implemented
