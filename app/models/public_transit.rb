@@ -51,7 +51,11 @@ class PublicTransit
 
   def price(response) # In USD
     if travel_mode == "transit"
-      response["routes"][0]["fare"]["text"]
+      if response["routes"][0].keys.include?("fare")
+        response["routes"][0]["fare"]["text"]
+      else
+        "Not available"
+      end
     elsif travel_mode == "driving"
       "$#{(distance(response) * DRIVING_COST_PER_MILE).round(2)}"
     end
