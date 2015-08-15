@@ -1,3 +1,5 @@
+
+
 class Uber
   include Geocoder
   include HTTParty
@@ -16,12 +18,6 @@ class Uber
                   :availability => estimate_uber_availability(mode['surge_multiplier'])}
     end
     result
-  end
-
-  def distance(start_address, end_address)
-    start = Geocoder.coordinates(start_address)
-    destination = Geocoder.coordinates(end_address)
-    Geocoder::Calculations.distance_between(start, destination)
   end
 
   private
@@ -45,19 +41,19 @@ class Uber
 
   # Returns a list of options available in the area along with pricing information
   def options_available
-    parameters = { query: { :server_token => ENV['UBER_SERVER_TOKEN'],
-                            :latitude => 37.775818,
-                            :longitude => -122.418028 } }
+    parameters = { query: { 'server_token'=> ENV['UBER_SERVER_TOKEN'],
+                            'latitude'=> 37.775818,
+                            'longitude'=> -122.418028 } }
     self.class.get('/v1/products', parameters)
   end
 
   # Returns price estimates for trip sorted by each Uber mode/option
   def price_estimates
-    parameters = { query: { :server_token => ENV['UBER_SERVER_TOKEN'],
-                            :start_latitude => @start_lat,
-                            :start_longitude => @start_lon,
-                            :end_latitude => @end_lat,
-                            :end_longitude => @end_lon } }
+    parameters = { query: { 'server_token'=> ENV['UBER_SERVER_TOKEN'],
+                            'start_latitude'=> @start_lat,
+                            'start_longitude'=> @start_lon,
+                            'end_latitude'=> @end_lat,
+                            'end_longitude'=> @end_lon } }
     self.class.get('/v1/estimates/price', parameters)
   end
 
@@ -73,6 +69,8 @@ class Uber
   end
 
 end
+
+
 
   # ----------
   # OAuth to be implemented

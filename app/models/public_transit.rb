@@ -32,10 +32,10 @@ class PublicTransit
 
   def get_response
     parameters = { query: {
-      :key => ENV['GOOGLE_DIRECTION_API_KEY'],
-      :origin => "#{origin}",
-      :destination => "#{destination}",
-      :mode => travel_mode
+      'key' => ENV['GOOGLE_DIRECTION_API_KEY'],
+      'origin' => "#{origin}",
+      'destination' => "#{destination}",
+      'mode'=> travel_mode
       }
     }
     self.class.get('/maps/api/directions/json', parameters)
