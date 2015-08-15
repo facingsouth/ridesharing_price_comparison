@@ -22,8 +22,8 @@
         Welcome, <%= link_to current_user.name, current_user %>!
 
         <li><%= link_to "Logout", session_path(current_user), :method => :delete %></li>
-      <% else %>  
-        <%= form_tag new_session_path, :class=>"navbar-form navbar-left" do %>
+      <% else %>
+        <%= form_tag session_path, :class=>"navbar-form navbar-left" do %>
 
           <%= label_tag do %>
             Email
