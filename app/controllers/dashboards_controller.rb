@@ -12,6 +12,7 @@ class DashboardsController < ApplicationController
     data << public_transit.data_parser
     driving = PublicTransit.new(@origin, @destination, "driving")
     data << driving.data_parser
+    
     redirect_to dashboard_path( data: data ) 
   end
 
