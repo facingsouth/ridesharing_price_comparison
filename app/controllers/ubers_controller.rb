@@ -2,10 +2,7 @@ class UbersController < ApplicationController
 
   before_action :require_login
 
-def new
-
-end
-
+# Implementing OAuth
 def create
   uber = Uber.new
   uber.authorize
