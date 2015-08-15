@@ -1,6 +1,7 @@
 class PublicTransit
 
   DRIVING_COST_PER_MILE = 0.35
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
   include HTTParty
 

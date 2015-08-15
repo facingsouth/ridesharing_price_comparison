@@ -5,7 +5,7 @@ class Uber
   include Geocoder
   include HTTParty
 
-  base_uri 'https://sandbox-api.uber.com'
+  base_uri 'https://api.uber.com'
 
   def uber_type_price_distance(start_address, end_address)
     set_trip_coordinates(start_address, end_address)
@@ -15,13 +15,17 @@ class Uber
       result << { :mode => mode['localized_display_name'],
                   :price => mode['estimate'],
                   :distance => mode['distance'],
-                  :duration => mode['duration'],
+                  :duration => duration_in_minutes(mode['duration']),
                   :availability => estimate_uber_availability(mode['surge_multiplier'])}
     end
     result
   end
 
   private
+
+  def duration_in_minutes(duration_in_seconds)
+    (duration_in_seconds / 60.to_f).round
+  end
 
   def estimate_uber_availability(surge)
     # Setting 5 as the max ease of getting Uber
