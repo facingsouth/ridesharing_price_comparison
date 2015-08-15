@@ -21,7 +21,11 @@ class GoogleMap
   end
 
   def build_url
-    url_string = "https://www.google.com/maps/embed/v1/directions?origin=#{@origin}&destination=#{@destination}&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
+    url_string = "https://www.google.com/maps/embed/v1/directions?origin=#{@origin[0..-14]},+United+States&destination=#{@destination[0..-14]},+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
+    url_string = "https://www.google.com/maps/embed/v1/directions?origin=6705+Trigo+Road,+Goleta,+CA,+United+States&destination=101+State+Street,+Santa+Barbara,+CA,+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
+
+
+    url_string = "https://www.google.com/maps/embed/v1/directions?origin=6705+Trigo+Road,+Goleta,+CA,+United+States&destination=101+State+Street,+Santa+Barbara,+CA,+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
     url_string
   end
 
