@@ -5,6 +5,9 @@ class Search < ActiveRecord::Base
   validate :waypoint_must_can_be_found
 
   has_many :historicals
+  belongs_to :user
+
+  before_create :to_uppercase
 
   def get_data
     data = []
@@ -30,6 +33,15 @@ class Search < ActiveRecord::Base
     # Uber data
     data += Uber.new.uber_type_price_distance(self.origin, self.destination)
     [data, t.start_city]
+  end
+
+  def search_date
+    created_at.to_date
+  end
+
+  def to_uppercase
+    self.origin.upcase!
+    self.destination.upcase!
   end
 
   def waypoint_must_can_be_found

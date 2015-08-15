@@ -5,7 +5,11 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(search_params)
+    if signed_in_user?
+      @search = current_user.searches.new(search_params)
+    else
+      @search = Search.new(search_params)
+    end
     if @search.save
       redirect_to @search
     else
@@ -20,10 +24,15 @@ class SearchesController < ApplicationController
 
     # Create historicals from the search results
     @data.each do |d|
+      if (price = d[:price].split("$")[1].to_f) > 0
+        price_per_mile = (price / d[:distance]).round(2)
+      else
+        price_per_mile = "N/A"
+      end
       @search.historicals.create(type_of_service:    d[:mode],
                                  availability:       d[:availability],
                                  city_name:          city_name,
-                                 avg_price_per_mile: d[:price].split("$")[1].to_f / d[:distance])
+                                 avg_price_per_mile: price_per_mile)
     end
 
     # Prepare imbeded google map

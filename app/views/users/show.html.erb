@@ -1,0 +1,54 @@
+<div class="col-sm-10 col-sm-offset-1 main dashboard">
+  <h1 class="page-header">Dashboard</h1>
+
+  <div class="row placeholders">
+    <div class="col-xs-12 col-sm-4 placeholder">      
+      <h4 class="text-center">Number of Previous Searches</h4>
+      <div class="col-xs-8 col-xs-offset-2 "> 
+        <%= button_tag @user.num_of_searches, class: "btn btn-block btn-success" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 placeholder">
+      <h4 class="text-center">Most Frequent Origin</h4>
+      <div class="col-xs-8 col-xs-offset-2 "> 
+        <%= button_tag "#{@user.most_frequent_origin[0].origin} (#{@user.most_frequent_origin[0].num})",
+          class: "btn btn-block btn-success" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 placeholder">
+      <h4 class="text-center">Favorite Destination</h4>
+      <div class="col-xs-8 col-xs-offset-2 "> 
+        <%= button_tag "#{@user.most_frequent_destination[0].destination} (#{@user.most_frequent_destination[0].num})", 
+          class: "btn btn-block btn-success" %>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sub-header">Historical Searches</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Search Date</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Type of Service</th>
+          <th>Avg Price per Mile</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @user.last_7days_searches.each do |search| %>
+        <% search.historicals.each do |hist| %>
+        <tr>
+          <td><%= search.search_date %></td>
+          <td><%= search.origin %></td>
+          <td><%= search.destination %></td>
+          <td><%= hist.type_of_service %></td>
+          <td><%= hist.avg_price_per_mile %></td>
+        </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
