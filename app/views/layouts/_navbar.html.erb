@@ -19,9 +19,15 @@
         <!-- <li><a href="#">Link</a></li> -->
       </ul>
       <% if signed_in_user? %>
+        <div class="pull-right">
         Welcome, <%= link_to current_user.name, current_user %>!
-
-        <li><%= link_to "Logout", session_path(current_user), :method => :delete %></li>
+        </div>
+        <div class="pull-right">
+          <%= link_to "Logout", session_path(current_user), :method => :delete %>
+        </div>
+        <div class="pull-right">
+          <%= link_to "Dashboard", user_path(current_user) %>
+        </div>
       <% else %>
         <%= form_tag session_path, :class=>"navbar-form navbar-left" do %>
 

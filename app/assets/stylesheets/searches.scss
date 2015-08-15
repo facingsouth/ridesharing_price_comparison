@@ -10,8 +10,12 @@ body {
 }
 
 div.panel {
-  font-size: 1.5em;
   opacity: 0.9;
+  font-size: 1.2em;
+}
+
+#search-form {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 iframe {
@@ -45,4 +49,8 @@ margin-bottom:15px;}
 
 .spacer-row {
   height:40px;
+}
+
+.pull-right {
+  margin: 15px;
 }
