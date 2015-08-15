@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
   height: 100%;
-  background-image: url("http://thumbs.dreamstime.com/z/union-square-city-life-downtown-san-francisco-8501093.jpg");
+  background-image: url("https://static.pexels.com/photos/1106/sea-sky-beach-holiday.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -11,6 +11,7 @@ body {
 
 div.panel {
   font-size: 1.5em;
+  opacity: 0.9;
 }
 
 iframe {
@@ -21,7 +22,8 @@ iframe {
 margin-bottom:15px;}
 
 #result-table {
-  background-color: rgba(0, 153, 204,0.4);
+  background-color: rgba(0, 153, 204, 0.1);
+  padding: 10px;
 }
 
 .table-hover td {
@@ -34,9 +36,13 @@ margin-bottom:15px;}
 
 #sign-up-form {
   background-color: white;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .sign-up-form-button {
   width: 100%
+}
+
+.spacer-row {
+  height:40px;
 }
