@@ -1,5 +1,3 @@
-
-
 class Uber
   include Geocoder
   include HTTParty
@@ -18,6 +16,12 @@ class Uber
                   :availability => estimate_uber_availability(mode['surge_multiplier'])}
     end
     result
+  end
+
+  def distance(start_address, end_address)
+    start = Geocoder.coordinates(start_address)
+    destination = Geocoder.coordinates(end_address)
+    Geocoder::Calculations.distance_between(start, destination)
   end
 
   private
@@ -69,8 +73,6 @@ class Uber
   end
 
 end
-
-
 
   # ----------
   # OAuth to be implemented
