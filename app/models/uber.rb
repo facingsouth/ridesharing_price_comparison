@@ -1,5 +1,3 @@
-
-
 class Uber
   include Geocoder
   include HTTParty
@@ -18,6 +16,19 @@ class Uber
                   :availability => estimate_uber_availability(mode['surge_multiplier'])}
     end
     result
+  end
+
+  #  OAuth
+  def authorize
+    client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
+                                site: 'https://login.uber.com/oauth/authorize')
+    client.auth_code.authorize_url(:redirect_uri => 'http://localhost:3000/oauth2/callback')
+    @token = client.auth_code.get_token(client_secret: ENV['UBER_CLIENT_SECRET'],
+                                        client_id: ENV['UBER_CLIENT_ID'],
+                                        grant_type: 'authorization_code',
+                                        redirect_uri: 'http://localhost:3000',
+                                        code:'authorization_code'
+                                        )
   end
 
   private
@@ -69,31 +80,3 @@ class Uber
   end
 
 end
-
-
-
-  # ----------
-  # OAuth to be implemented
-  # def authorize
-  #   client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
-  #                               site: 'https://login.uber.com/oauth/authorize')
-  #   client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
-  #   @token = client.auth_code.get_token(client_secret: ENV['UBER_CLIENT_SECRET'],
-  #                                       client_id: ENV['UBER_CLIENT_ID'],
-  #                                       grant_type: 'authorization_code',
-  #                                       redirect_uri: 'http://localhost:8080',
-  #                                       code:'authorization_code',
-  #                                       headers: {'Authorization' => ENV['UBER_SERVER_TOKEN']})
-  # end
-
-  # Methods not needed anymore
-
-  #   def initialize(start_lat = 37.775818,
-  #                start_lon = -122.418028,
-  #                end_lat   = 37.005818,
-  #                end_lon   = -122.000028)
-  #   @start_lat = start_lat
-  #   @start_lon = start_lon
-  #   @end_lat = end_lat
-  #   @end_lon = end_lon
-  # end
