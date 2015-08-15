@@ -19,11 +19,13 @@ class DashboardsController < ApplicationController
 
   def show
     @data = params[:data]
+    map = GoogleMap.new(params[:origin], params[:destination])
+    @map_url = map.build_url
     # map = GoogleMap.new(params[:origin], params[:destination])
     # @map = map.get_response
-    @origin = CGI::escape(params[:origin])
-    @destination = CGI::escape(params[:destination])
-    @url = "https://www.google.com/maps/embed/v1/directions?origin=#{@origin},+United+States&destination=S#{@destination},+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
+    # @origin = CGI::escape(params[:origin])
+    # @destination = CGI::escape(params[:destination])
+    # @url = "https://www.google.com/maps/embed/v1/directions?origin=#{@origin},+United+States&destination=S#{@destination},+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
 
     # fail
 
