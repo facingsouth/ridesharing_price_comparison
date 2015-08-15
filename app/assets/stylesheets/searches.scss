@@ -25,11 +25,16 @@ margin-bottom:15px;}
 }
 
 .table-hover td {
-   text-align: center;   
+   text-align: center;
 }
 
 .field_with_errors {
     boder: 1px solid red;
 
     display: inline-block;
+}
+
+#sign-up-form {
+  background-color: white;
+  opacity: 0.6;
 }

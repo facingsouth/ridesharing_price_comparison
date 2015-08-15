@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
 
+def new
+  @user = User.new
+end
+
 def create
   @user = User.new(whitelisted_user_params)
   if @user.save
     flash[:success] = "Thanks for signing up!"
-    redirect_to :
+    redirect_to new_user_search_path(@user.id)
   else
     flash[:success] = "Unable to register"
     redirect_to :back
   end
 
 end
-
 
 def show
 
