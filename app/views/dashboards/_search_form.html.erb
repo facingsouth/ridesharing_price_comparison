@@ -1,0 +1,7 @@
+<%= form_tag dashboard_path, class: "form-group" do %>
+  <%= label_tag :origin %>
+  <%= text_field_tag :origin, "", class: "form-control" %>
+  <%= label_tag :destination %>
+  <%= text_field_tag :destination, "", class: "form-control" %>
+  <%= submit_tag "Find!", class: "btn btn-block btn-success" %>
+<% end %>
