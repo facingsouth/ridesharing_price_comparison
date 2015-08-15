@@ -17,7 +17,8 @@ class Taxi < ActiveRecord::Base
   end
 
   def geo_address(start_address)
-    @start_city = Geocoder.coordinates(start_address).city
+    @start_city = Geocoder.search(start_address).first
+    @start_city.city
     @start_state = Geocoder.coordinates(start_address).state
   end
 
