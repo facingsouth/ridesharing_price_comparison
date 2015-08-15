@@ -16,7 +16,17 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
-    @data = @search.get_data
+    @data, city_name = @search.get_data
+
+    # Create historicals from the search results
+    @data.each do |d|
+      @search.historicals.create(type_of_service:    d[:mode],
+                                 availability:       d[:availability],
+                                 city_name:          city_name,
+                                 avg_price_per_mile: d[:price].split("$")[1].to_f / d[:distance])
+    end
+
+    # Prepare imbeded google map
     map = GoogleMap.new(@search.origin, @search.destination)
     @map_url = map.build_url
     @search = Search.new

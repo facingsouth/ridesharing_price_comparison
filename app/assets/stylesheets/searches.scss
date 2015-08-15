@@ -29,12 +29,14 @@ margin-bottom:15px;}
 }
 
 .field_with_errors {
-    boder: 1px solid red;
-
-    display: inline-block;
+  color: red;
 }
 
 #sign-up-form {
   background-color: white;
   opacity: 0.6;
+}
+
+.sign-up-form-button {
+  width: 100%
 }
