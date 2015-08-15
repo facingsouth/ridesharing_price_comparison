@@ -1,5 +1,4 @@
-require 'oauth2'
-require 'pry'
+
 
 class Uber
   include Geocoder
@@ -58,6 +57,7 @@ class Uber
     self.class.get('/v1/estimates/price', parameters)
   end
 
+
   # Returns an array with [lat, long]
   def address_to_coordinates(user_address)
     Geocoder.coordinates(user_address)
@@ -67,8 +67,6 @@ class Uber
   def coordinates_to_address(lat, long)
     Geocoder.address([lat, long])
   end
-
-end
 
 
 
