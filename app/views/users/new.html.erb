@@ -1,0 +1,17 @@
+<div class="panel", id = 'sign-up-form'>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= form_for @user do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %><br>
+        <%= f.label :email %>
+        <%= f.email_field :email %><br>
+        <%= f.label :password %>
+        <%= f.password_field :password %><br>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %><br>
+        <%= f.submit "Sign Up", class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

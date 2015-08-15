@@ -1,4 +1,4 @@
-// Place all the styles related to the dashboard controller here.
+// Place all the styles related to the searches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
@@ -10,9 +10,7 @@ body {
 }
 
 div.panel {
-  color: black;
   font-size: 1.5em;
-  opacity: 0.9;
 }
 
 iframe {
@@ -28,4 +26,15 @@ margin-bottom:15px;}
 
 .table-hover td {
    text-align: center;
+}
+
+.field_with_errors {
+    boder: 1px solid red;
+
+    display: inline-block;
+}
+
+#sign-up-form {
+  background-color: white;
+  opacity: 0.6;
 }

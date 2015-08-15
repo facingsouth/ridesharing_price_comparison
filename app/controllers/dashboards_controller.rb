@@ -1,4 +1,6 @@
 class DashboardsController < ApplicationController
+<<<<<<< HEAD
+=======
 
   def new
   end
@@ -30,4 +32,5 @@ class DashboardsController < ApplicationController
     # fail
 
   end
+>>>>>>> master
 end
