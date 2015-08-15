@@ -1,25 +1,32 @@
-require 'nokogiri'
-require 'open-uri'
-require 'mechanize'
-require 'pry'
+# require 'nokogiri'
+# require 'open-uri'
+# require 'mechanize'
+# require 'pry'
 
-class Taxi
+class TaxiReader
 
   def initialize
 
   end
 
   def read_rates
-    file = File.open("taxi_rates.txt", 'r')
+    file = File.open("./app/models/taxi_rates.txt", 'r')
     while !file.eof?
       line = file.readline
-      line = line.split(" ").to_a
-      if line[0].include?(".")
-        line.shift
-      end
-
-      
-
+      line = line.split("$")
+      # if line[1].nil?
+      #   break
+      # end
+      # puts line
+      # if line[0].include?(".")
+      #   line[0] = line[0].split(/.(.+)?/)[1]
+      #   line[0] = line[0][1]
+      Taxi.create(:city_name => line[0],
+                 :initial_charge => line[1].to_f,
+                 :per_mile_charge => line[2].to_f,
+                 :typical_short_fare => line[3].to_f,
+                 :typical_medium_fare => line[4].to_f,
+                 :typical_long_fare => line[5].to_f)
     end
   end
 
