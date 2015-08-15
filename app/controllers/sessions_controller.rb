@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
 
   skip_before_action :require_login, :only => [:new, :create]
-  
+
   def new
   end
-  
+
   def create
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:error] = "We couldn't sign you in"
-      render :new
+      redirect_to root_url
     end
   end
 

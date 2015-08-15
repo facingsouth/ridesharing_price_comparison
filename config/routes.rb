@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "searches#new"
   resources :users do
     resources :searches, only: [:new, :create, :show]
+    resource :uber, only: [:new, :create]
   end
   resources :searches, only: [:new, :create, :show]
   resource :session, only: [:new, :create, :destroy]
