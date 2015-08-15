@@ -1,5 +1,3 @@
-
-
 class Uber
   include Geocoder
   include HTTParty
@@ -19,6 +17,27 @@ class Uber
     end
     result
   end
+
+  #  OAuth
+  def sign_in_to_uber
+    client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
+                                ENV['UBER_CLIENT_SECRET'],
+                                site: 'https://login.uber.com/oauth/authorize')
+    client.auth_code.authorize_url(:redirect_uri => 'http://localhost:3000/oauth2/callback')
+  end
+
+  def authorize
+    client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
+                                site: 'https://login.uber.com/oauth/authorize')
+    client.auth_code.authorize_url(:redirect_uri => 'http://localhost:3000/oauth2/callback')
+    @token = client.auth_code.get_token(client_secret: ENV['UBER_CLIENT_SECRET'],
+                                        client_id: ENV['UBER_CLIENT_ID'],
+                                        grant_type: 'authorization_code',
+                                        redirect_uri: 'http://localhost:3000',
+                                        code:'authorization_code'
+                                        )
+  end
+
 
   private
 
@@ -73,18 +92,6 @@ end
 
 
   # ----------
-  # OAuth to be implemented
-  # def authorize
-  #   client = OAuth2::Client.new(ENV['UBER_CLIENT_ID'],
-  #                               site: 'https://login.uber.com/oauth/authorize')
-  #   client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
-  #   @token = client.auth_code.get_token(client_secret: ENV['UBER_CLIENT_SECRET'],
-  #                                       client_id: ENV['UBER_CLIENT_ID'],
-  #                                       grant_type: 'authorization_code',
-  #                                       redirect_uri: 'http://localhost:8080',
-  #                                       code:'authorization_code',
-  #                                       headers: {'Authorization' => ENV['UBER_SERVER_TOKEN']})
-  # end
 
   # Methods not needed anymore
 
