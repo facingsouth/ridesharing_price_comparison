@@ -19,7 +19,7 @@ class PublicTransit
   def data_parser
     response = get_response
     return @data = { :status => "service not available" } unless response
-    raise response["status"] unless response["status"] == "OK"
+    return @data = { :status => response["status"] } unless response["status"] == "OK"
     @data = { :distance => distance(response),
               :duration => duration(response),
               :price    => price(response),

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  root to: "dashboards#new"
-  resource :dashboard, only: [:new, :create, :show]
+  root to: "searches#new"
+  resource :dashboard
+  resources :searches, only: [:new, :create, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
