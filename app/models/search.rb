@@ -4,14 +4,32 @@ class Search < ActiveRecord::Base
 
   validate :waypoint_must_can_be_found
 
+  has_many :historicals
+
   def get_data
     data = []
-    public_transit = PublicTransit.new(self.origin, self.destination, "transit")
+    # Public transit data
+    public_transit = PublicTransit.new(self.origin, 
+                                       self.destination, 
+                                       "transit")
     data << public_transit.data_parser
-    driving = PublicTransit.new(self.origin, self.destination, "driving")
+
+    # Diving data
+    driving = PublicTransit.new(self.origin, 
+                                self.destination, 
+                                "driving")
     data << driving.data_parser
+
+    # Taxi data
+    t = Taxi.new
+    data << t.data_parser(self.origin, 
+                          self.destination, 
+                          driving.data_parser[:duration], 
+                          driving.data_parser[:distance])
+
+    # Uber data
     data += Uber.new.uber_type_price_distance(self.origin, self.destination)
-    data
+    [data, t.start_city]
   end
 
   def waypoint_must_can_be_found

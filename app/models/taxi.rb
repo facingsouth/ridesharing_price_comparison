@@ -36,6 +36,10 @@ class Taxi < ActiveRecord::Base
     result[0].per_mile_charge
   end
 
+  def start_city
+    @start_city
+  end
+
 
 
 end
