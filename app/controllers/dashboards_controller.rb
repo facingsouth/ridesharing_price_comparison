@@ -12,11 +12,20 @@ class DashboardsController < ApplicationController
     data << public_transit.data_parser
     driving = PublicTransit.new(@origin, @destination, "driving")
     data << driving.data_parser
-    
-    redirect_to dashboard_path( data: data ) 
+    t = Taxi.new
+    data << t.data_parser(@origin, @destination, driving.data_parser[:duration], driving.data_parser[:distance])
+    redirect_to dashboard_path( data: data, origin: @origin, destination: @destination ) 
   end
 
   def show
     @data = params[:data]
+    # map = GoogleMap.new(params[:origin], params[:destination])
+    # @map = map.get_response
+    @origin = CGI::escape(params[:origin])
+    @destination = CGI::escape(params[:destination])
+    @url = "https://www.google.com/maps/embed/v1/directions?origin=#{@origin},+United+States&destination=S#{@destination},+United+States&key=AIzaSyBJHptJsjF1gs_K-Y595e9JmUx24VMQtgo"
+
+    # fail
+
   end
 end

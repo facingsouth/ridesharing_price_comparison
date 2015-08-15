@@ -21,7 +21,7 @@ class TaxiReader
       # if line[0].include?(".")
       #   line[0] = line[0].split(/.(.+)?/)[1]
       #   line[0] = line[0][1]
-      Taxi.create(:city_name => line[0],
+      Taxi.create(:city_name => line[0].strip,
                  :initial_charge => line[1].to_f,
                  :per_mile_charge => line[2].to_f,
                  :typical_short_fare => line[3].to_f,

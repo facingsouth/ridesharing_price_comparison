@@ -1,14 +1,26 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div.panel {
+body {
+  height: 100%;
   background-image: url("http://thumbs.dreamstime.com/z/union-square-city-life-downtown-san-francisco-8501093.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 600px;
+}
+
+div.container {
+  // background-image: url("http://thumbs.dreamstime.com/z/union-square-city-life-downtown-san-francisco-8501093.jpg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  min-height: 100%;
 }
 
 div.panel {
   color: black;
   font-size: 1.5em;
+  opacity: 0.9;
+}
+
+iframe {
+  z-index: 2;
 }
