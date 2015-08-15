@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="panel">
+    <div class="panel-heading text-center">
+      <h2>Search Results</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <table class="table-hover col-sm-8 col-sm-offset-2" id="result-table">
+          <tr class="danger">
+            <th>Type of Service</th>
+            <th>Distance(miles)</th>
+            <th>Duration(min)</th>
+            <th>Estimated Price</th>
+            <th>Availability</th>
+          </tr>
+          <% @data.each do |d| %>
+          <tr class="danger">
+            <td><%= d[:mode] %></td>
+            <td><%= d[:distance] %></td>
+            <td><%= d[:duration] %></td>
+            <td><%= d[:price] %></td>
+            <td><%= d[:availability] %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <%= render partial: "search_form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

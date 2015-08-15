@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+gem 'mechanize', '~>2.7.2', '<2.7.3'
+gem 'pry'
 #Uber oauth
 gem 'oauth2'
 
@@ -39,6 +42,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 gem 'figaro'
 gem 'httparty'
+
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
