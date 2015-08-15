@@ -1,8 +1,6 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-<<<<<<< HEAD
-=======
 body {
   height: 100%;
   background-image: url("http://thumbs.dreamstime.com/z/union-square-city-life-downtown-san-francisco-8501093.jpg");
@@ -12,7 +10,7 @@ body {
 }
 
 div.panel {
-  color: black;
+  color: white;
   font-size: 1.5em;
   opacity: 0.9;
 }
@@ -29,6 +27,5 @@ margin-bottom:15px;}
 }
 
 .table-hover td {
-   text-align: center;
+   text-align: center;   
 }
->>>>>>> master

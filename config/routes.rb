@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
   root to: "searches#new"
   resource :dashboard
   resources :searches, only: [:new, :create, :show]
+=======
+  root to: "dashboards#new"
+  resource :dashboard, only: [:new, :create, :show]
+  resources :users
+>>>>>>> master
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

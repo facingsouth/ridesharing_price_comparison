@@ -16,6 +16,11 @@ class Taxi < ActiveRecord::Base
     Geocoder::Calculations.distance_between(start, destination)
   end
 
+  def geo_address(start_address)
+    @start_city = Geocoder.search(start_address).first.city
+    @start_state = Geocoder.search(start_address).first.state_code
+  end
+
   def total_taxi_price(start_address, end_address)
     total_price = starting_city_rate(start_address) * distance(start_address, end_address)
     total_price = total_price.round(2)
@@ -23,18 +28,14 @@ class Taxi < ActiveRecord::Base
   end
 
   def starting_city_rate(start_address)
-    result = Taxi.where("city_name ILIKE ?", "%#{start_address}%")
-    if result.nil?
-      result = Taxi.where("city_name ILIKE ?", "%#{start_address[0..-3]}")
-      if result.nil?
-        result = Taxi.where("city_name ILIKE ?", "%#{start_address[-3..-1]}%")
-        result
-      end
+    geo_address(start_address)
+    result = Taxi.where("city_name ILIKE ?", "%#{ @start_city }%")
+    if result.length == 0
+      result = Taxi.where("city_name ILIKE ?", "%#{ @start_state }")
     end
-
     result[0].per_mile_charge
   end
 
-  
+
 
 end
