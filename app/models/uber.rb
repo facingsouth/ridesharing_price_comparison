@@ -28,7 +28,7 @@ class Uber
 
   def estimate_uber_availability(surge)
     # Setting 5 as the max ease of getting Uber
-    surge - 1 > 0 ? (5/surge).round(1) : 5
+    surge - 1 > 0 ? (5/surge).round(1) : 5.0
   end
 
   # Sets the lat and long for a search
@@ -68,7 +68,7 @@ class Uber
     Geocoder.address([lat, long])
   end
 
-
+end
 
 
 
